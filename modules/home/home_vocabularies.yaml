@@ -1,0 +1,46 @@
+version: "0.1"
+name: "home_vocabularies"
+description: "Home insurance controlled vocabularies for Insurance Ontology Version 1"
+
+module: "home"
+
+vocabularies:
+  property_type:
+    description: "Type of residential property being insured."
+    values: ["detached_house", "semi_detached_house", "terraced_house", "bungalow", "flat", "maisonette", "converted_flat", "cottage", "other"]
+
+  construction_type:
+    description: "General construction classification of the property."
+    values: ["standard", "non_standard", "timber_frame", "stone", "brick", "concrete", "listed", "thatched", "other"]
+
+  occupancy_type:
+    description: "Basis on which the property is occupied."
+    values: ["owner_occupied", "tenanted", "holiday_home", "unoccupied", "family_occupied", "other"]
+
+  wall_material:
+    description: "Primary wall material of the property."
+    values: ["brick", "stone", "concrete", "timber", "mixed", "other"]
+
+  roof_material:
+    description: "Primary roof material of the property."
+    values: ["tile", "slate", "thatch", "metal", "flat_felt", "flat_membrane", "other"]
+
+  item_category:
+    description: "Category of specified item or personal possession."
+    values: ["jewellery", "watch", "artwork", "electronics", "laptop", "mobile_phone", "bicycle", "musical_instrument", "camera", "other"]
+
+  cover_location_type:
+    description: "Where the item is intended to be covered."
+    values: ["inside_home_only", "inside_and_outside_home", "specified_location", "worldwide", "other"]
+
+  alarm_type:
+    description: "Type of security alarm present at the property."
+    values: ["bells_only", "monitored_alarm", "smart_alarm", "police_linked_alarm", "none", "other"]
+
+  locks_type:
+    description: "Primary lock type fitted to entry points."
+    values: ["mortice_deadlock", "multi_point_lock", "key_operated_window_lock", "standard_lock", "other"]
+
+  loss_type:
+    description: "Type of home related loss event or prior claim."
+    values: ["fire", "flood", "storm", "theft", "escape_of_water", "accidental_damage", "subsidence", "malicious_damage", "other"]
