@@ -1,0 +1,89 @@
+version: "0.1"
+name: "source_to_canonical_template"
+description: "Template for mapping source system fields to canonical ontology fields"
+
+mapping_template:
+  mapping_id: ""
+  source_system_name: ""
+  source_system_type: ""
+  jurisdiction: "UK"
+  product_line: ""
+  source_entity_name: ""
+  canonical_entity_name: ""
+  canonical_field_path: ""
+  source_field_name: ""
+  source_field_description: ""
+  source_data_type: ""
+  canonical_data_type: ""
+  transformation_rule: ""
+  allowed_value_mapping: []
+  default_value: ""
+  mandatory_flag: false
+  repeatable_flag: false
+  confidence_rule: ""
+  validation_rule: ""
+  notes: ""
+
+examples:
+  - mapping_id: "MOTOR_POLICY_001"
+    source_system_name: "PolicyAdminX"
+    source_system_type: "policy_administration_system"
+    jurisdiction: "UK"
+    product_line: "motor"
+    source_entity_name: "motor_policy_record"
+    canonical_entity_name: "motor_policy"
+    canonical_field_path: "policy.policy_number"
+    source_field_name: "pol_no"
+    source_field_description: "Unique motor policy reference"
+    source_data_type: "string"
+    canonical_data_type: "string"
+    transformation_rule: "Trim whitespace and preserve original value"
+    allowed_value_mapping: []
+    default_value: ""
+    mandatory_flag: true
+    repeatable_flag: false
+    confidence_rule: "Exact field match from trusted source system"
+    validation_rule: "Must not be null or empty"
+    notes: "Primary identifier for policy"
+
+  - mapping_id: "HOME_PROPERTY_001"
+    source_system_name: "HomeUWPlatform"
+    source_system_type: "underwriting_platform"
+    jurisdiction: "UK"
+    product_line: "home"
+    source_entity_name: "risk_address"
+    canonical_entity_name: "property"
+    canonical_field_path: "property.postcode"
+    source_field_name: "risk_postcode"
+    source_field_description: "Postcode of insured property"
+    source_data_type: "string"
+    canonical_data_type: "string"
+    transformation_rule: "Uppercase and remove extra spaces"
+    allowed_value_mapping: []
+    default_value: ""
+    mandatory_flag: true
+    repeatable_flag: false
+    confidence_rule: "Direct mapping where postcode is present"
+    validation_rule: "Must follow UK postcode pattern where possible"
+    notes: "Used for location and rating"
+
+  - mapping_id: "PENSIONS_MEMBER_001"
+    source_system_name: "PensionAdminCore"
+    source_system_type: "pensions_administration_system"
+    jurisdiction: "UK"
+    product_line: "pensions"
+    source_entity_name: "member_record"
+    canonical_entity_name: "pension_member"
+    canonical_field_path: "pension_member.member_identifier"
+    source_field_name: "member_id"
+    source_field_description: "Unique scheme member reference"
+    source_data_type: "string"
+    canonical_data_type: "string"
+    transformation_rule: "Trim whitespace"
+    allowed_value_mapping: []
+    default_value: ""
+    mandatory_flag: true
+    repeatable_flag: false
+    confidence_rule: "Direct identifier mapping from administration system"
+    validation_rule: "Must be unique within scheme context"
+    notes: "Primary member identifier"
