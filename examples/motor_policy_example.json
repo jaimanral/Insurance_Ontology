@@ -1,0 +1,128 @@
+{
+  "policy": {
+    "policy_number": "MTR00012345",
+    "product_type": "motor",
+    "inception_date": "2026-01-01",
+    "expiry_date": "2026-12-31",
+    "status": "active",
+    "currency": "GBP"
+  },
+  "policyholder": {
+    "party_type": "person",
+    "full_name": "John Smith",
+    "date_of_birth": "1988-04-12",
+    "marital_status": "married",
+    "postcode": "CV37 9AA"
+  },
+  "insured": {
+    "party_type": "person",
+    "full_name": "John Smith"
+  },
+  "vehicle": {
+    "registration_number": "AB12CDE",
+    "vehicle_identification_number": "WF0AXXGCDAX123456",
+    "make": "Ford",
+    "model": "Focus",
+    "variant": "Titanium",
+    "year_of_manufacture": 2022,
+    "body_type": "hatchback",
+    "fuel_type": "petrol",
+    "transmission_type": "manual",
+    "engine_size_cc": 1498,
+    "market_value": 14500,
+    "purchase_date": "2023-03-10"
+  },
+  "drivers": [
+    {
+      "full_name": "John Smith",
+      "date_of_birth": "1988-04-12",
+      "licence_type": "full_uk",
+      "licence_issue_date": "2006-07-20",
+      "occupation": "Project Manager",
+      "marital_status": "married",
+      "years_licensed": 19,
+      "claims_history_count": 0,
+      "conviction_count": 0,
+      "is_main_driver": true
+    },
+    {
+      "full_name": "Jane Smith",
+      "date_of_birth": "1990-10-22",
+      "licence_type": "full_uk",
+      "licence_issue_date": "2009-05-14",
+      "occupation": "Teacher",
+      "marital_status": "married",
+      "years_licensed": 16,
+      "claims_history_count": 1,
+      "conviction_count": 0,
+      "relationship_to_policyholder": "spouse",
+      "is_main_driver": false
+    }
+  ],
+  "vehicle_usage": {
+    "usage_type": "commuting",
+    "annual_mileage": 10000,
+    "commuting_flag": true,
+    "business_use_flag": false
+  },
+  "garaging": {
+    "garaging_type": "driveway",
+    "postcode": "CV37 9AA",
+    "overnight_location_same_as_home_flag": true
+  },
+  "no_claims_discount": {
+    "years_of_no_claims": 5,
+    "protected_flag": true,
+    "proof_provided_flag": true
+  },
+  "security_devices": [
+    {
+      "device_type": "alarm",
+      "approved_flag": true,
+      "installation_date": "2022-02-01"
+    },
+    {
+      "device_type": "immobiliser",
+      "approved_flag": true,
+      "installation_date": "2022-02-01"
+    }
+  ],
+  "vehicle_modifications": [],
+  "coverage": {
+    "cover_basis": "comprehensive",
+    "own_damage_included": true,
+    "third_party_included": true,
+    "fire_included": true,
+    "theft_included": true,
+    "windscreen_included": true,
+    "courtesy_car_included": true,
+    "breakdown_assistance_included": false,
+    "foreign_use_included": true
+  },
+  "premium": {
+    "amount": 685.50,
+    "currency": "GBP",
+    "payment_frequency": "annual"
+  },
+  "excess": {
+    "compulsory_excess_amount": 250,
+    "voluntary_excess_amount": 150,
+    "total_excess_amount": 400
+  },
+  "documents": [
+    {
+      "document_id": "DOC1001",
+      "document_type": "schedule",
+      "document_title": "Motor Policy Schedule",
+      "issue_date": "2026-01-01",
+      "version_number": "1.0"
+    },
+    {
+      "document_id": "DOC1002",
+      "document_type": "policy_wording",
+      "document_title": "Motor Insurance Policy Wording",
+      "issue_date": "2026-01-01",
+      "version_number": "1.0"
+    }
+  ]
+}
