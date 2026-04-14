@@ -1,0 +1,86 @@
+version: "0.1"
+name: "pensions_entities"
+description: "UK pensions module entities for Insurance Ontology Version 1"
+
+module: "pensions"
+jurisdiction: "UK"
+
+entities:
+  pension_scheme:
+    definition: "A structured UK pension arrangement through which retirement benefits are provided to members under defined rules."
+    extends: "Pension Scheme"
+    applies_to: ["pensions"]
+    core_attributes: ["scheme_identifier", "scheme_name", "scheme_type", "scheme_status", "registration_status", "normal_retirement_age", "auto_enrolment_qualifying_flag"]
+    relationships: ["Pension Scheme has Pension Member", "Pension Scheme may be sponsored by Employer", "Pension Scheme may define Contribution", "Pension Scheme may define Benefit", "Pension Scheme may be administered by Scheme Administrator"]
+
+  pension_member:
+    definition: "An individual participating in a UK pension scheme."
+    extends: "Pension Member"
+    applies_to: ["pensions"]
+    core_attributes: ["member_identifier", "full_name", "date_of_birth", "date_joined", "employment_status", "retirement_age", "national_insurance_number_present_flag"]
+    relationships: ["Pension Member is a Person", "Pension Member participates in Pension Scheme", "Pension Member may have Pension Account", "Pension Member may nominate Beneficiary"]
+
+  employer:
+    definition: "An organisation that sponsors or contributes to a workplace pension arrangement for employees."
+    extends: "Employer"
+    applies_to: ["pensions"]
+    core_attributes: ["employer_name", "employer_identifier", "payroll_reference", "auto_enrolment_duties_flag"]
+    relationships: ["Employer is an Organisation", "Employer may sponsor Pension Scheme", "Employer may make Contribution for Pension Member"]
+
+  scheme_administrator:
+    definition: "A party responsible for the administration and operation of the pension scheme."
+    applies_to: ["pensions"]
+    core_attributes: ["administrator_name", "administrator_type", "contact_reference"]
+    relationships: ["Scheme Administrator may administer Pension Scheme"]
+
+  pension_account:
+    definition: "A member level account or record representing pension value, contributions, and investment allocation."
+    extends: "Pension Account"
+    applies_to: ["pensions"]
+    core_attributes: ["account_identifier", "account_status", "current_fund_value", "vested_value", "transfer_value", "crystallised_flag"]
+    relationships: ["Pension Account belongs to Pension Member", "Pension Account may receive Contribution", "Pension Account may hold Fund Allocation", "Pension Account may support Benefit"]
+
+  contribution:
+    definition: "A payment made by or on behalf of a pension member into a UK pension arrangement."
+    extends: "Contribution"
+    applies_to: ["pensions"]
+    core_attributes: ["contribution_amount", "contribution_frequency", "contribution_date", "contribution_source", "employee_contribution_rate", "employer_contribution_rate", "tax_relief_basis"]
+    relationships: ["Contribution is made into Pension Scheme", "Contribution may be allocated to Pension Account", "Contribution may be made by Employer", "Contribution may be made by Pension Member"]
+
+  fund_allocation:
+    definition: "The allocation of pension value or contributions across one or more investment funds."
+    applies_to: ["pensions"]
+    core_attributes: ["fund_name", "fund_type", "allocation_percentage", "default_fund_flag", "lifestyle_strategy_flag"]
+    relationships: ["Fund Allocation may apply to Pension Account", "Contribution may be allocated to Fund Allocation"]
+
+  pension_benefit:
+    definition: "A retirement or death benefit arising from pension scheme participation and scheme rules."
+    extends: "Benefit"
+    applies_to: ["pensions"]
+    core_attributes: ["benefit_type", "benefit_status", "benefit_start_date", "projected_value", "guaranteed_flag"]
+    relationships: ["Pension Benefit is defined by Pension Scheme", "Pension Benefit may be associated with Pension Member", "Pension Benefit may be payable to Beneficiary"]
+
+  transfer:
+    definition: "A movement of pension value into or out of a pension arrangement."
+    applies_to: ["pensions"]
+    core_attributes: ["transfer_type", "transfer_amount", "transfer_date", "ceding_scheme_name", "receiving_scheme_name", "transfer_status"]
+    relationships: ["Transfer may relate to Pension Account", "Transfer may affect Pension Scheme", "Transfer may relate to Pension Member"]
+
+  beneficiary_nomination:
+    definition: "A member stated nomination of one or more beneficiaries for death related pension benefits."
+    applies_to: ["pensions"]
+    core_attributes: ["nomination_date", "percentage_allocation", "expression_of_wish_flag"]
+    relationships: ["Beneficiary Nomination may be made by Pension Member", "Beneficiary Nomination may identify Beneficiary"]
+
+  retirement_event:
+    definition: "A pension lifecycle event associated with retirement, benefit access, or transition into drawdown or payment."
+    applies_to: ["pensions"]
+    core_attributes: ["event_type", "event_date", "retirement_age", "tax_free_cash_taken_flag", "drawdown_selected_flag"]
+    relationships: ["Retirement Event may relate to Pension Member", "Retirement Event may affect Pension Account", "Retirement Event may trigger Pension Benefit"]
+
+  pensions_document:
+    definition: "A document containing pension scheme, member, contribution, or benefit related information."
+    extends: "Document"
+    applies_to: ["pensions"]
+    core_attributes: ["document_id", "document_type", "document_title", "issue_date", "version_number"]
+    relationships: ["Pensions Document is a Document", "Pensions Document may evidence Pension Scheme", "Pensions Document may describe Contribution", "Pensions Document may describe Pension Benefit"]
