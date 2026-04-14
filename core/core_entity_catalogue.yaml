@@ -1,1 +1,446 @@
+version: "0.1"
+name: "insurance_ontology_core_entity_catalogue"
+description: "Core shared entity catalogue for the Insurance Ontology Version 1"
 
+domains:
+  - name: "Party"
+    description: "Represents people and organisations involved in insurance contracts, pensions arrangements, and related activities."
+    entities:
+      - name: "Party"
+        definition: "A general person or organisation that participates in an insurance or pensions context."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Party may specialise into Person"
+          - "Party may specialise into Organisation"
+
+      - name: "Person"
+        definition: "An individual involved in an insurance or pensions context."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Person is a Party"
+
+      - name: "Organisation"
+        definition: "A legal or business entity involved in an insurance or pensions context."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Organisation is a Party"
+
+      - name: "Policyholder"
+        definition: "The party that enters into or holds the policy contract with the insurer."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Policyholder is a Party"
+          - "Policy has Policyholder"
+
+      - name: "Insured"
+        definition: "The party whose interest, liability, person, or property is covered by the policy."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Insured is a Party"
+          - "Policy may cover Insured"
+
+      - name: "Broker"
+        definition: "An intermediary party that arranges or places insurance on behalf of a customer or business."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Broker is an Organisation"
+          - "Policy may be arranged by Broker"
+
+      - name: "Underwriter"
+        definition: "The party or function responsible for assessing and accepting insurance risk."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Underwriter may be a Person or Organisation"
+          - "Policy may be approved by Underwriter"
+
+      - name: "Employer"
+        definition: "An organisation that sponsors or contributes to a pension arrangement for employees or members."
+        applies_to:
+          - pensions
+        relationships:
+          - "Employer is an Organisation"
+          - "Employer may sponsor Pension Scheme"
+
+      - name: "Pension Member"
+        definition: "An individual participating in a pension scheme."
+        applies_to:
+          - pensions
+        relationships:
+          - "Pension Member is a Person"
+          - "Pension Member participates in Pension Scheme"
+
+      - name: "Beneficiary"
+        definition: "A party entitled to receive benefits, proceeds, or pension value under defined conditions."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Beneficiary is a Party"
+
+  - name: "Contract"
+    description: "Represents insurance or pensions agreements and their contractual components."
+    entities:
+      - name: "Policy"
+        definition: "A contractual agreement under which coverage is provided in exchange for premium, subject to terms, conditions, exclusions, and limits."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        core_attributes:
+          - "policy_number"
+          - "product_type"
+          - "inception_date"
+          - "expiry_date"
+          - "status"
+          - "currency"
+        relationships:
+          - "Policy has Policyholder"
+          - "Policy may cover Insured"
+          - "Policy contains Coverage"
+          - "Policy has Premium"
+          - "Policy is evidenced by Document"
+          - "Policy may be modified by Endorsement"
+
+      - name: "Quote"
+        definition: "A proposed insurance contract setting out indicative or offered terms, subject to acceptance and validation."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Quote may become Policy"
+          - "Quote may contain Coverage"
+          - "Quote may be requested by Party"
+
+      - name: "Coverage"
+        definition: "A defined aspect of protection or benefit provided under a contract."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Coverage is contained in Policy"
+          - "Coverage applies to Insured Object"
+          - "Coverage may have Limit"
+          - "Coverage may have Excess"
+          - "Coverage may be restricted by Exclusion"
+
+      - name: "Exclusion"
+        definition: "A condition, circumstance, event, or subject matter that is not covered under the contract."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Exclusion may restrict Coverage"
+          - "Exclusion may be stated in Document"
+
+      - name: "Excess"
+        definition: "The amount or portion of loss to be borne by the policyholder or insured before the insurer responds."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Excess may apply to Coverage"
+          - "Excess may apply to Claim"
+
+      - name: "Limit"
+        definition: "The maximum amount payable or recoverable under a policy or specific coverage section."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Limit may apply to Coverage"
+
+      - name: "Premium"
+        definition: "The amount payable in return for insurance coverage."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        core_attributes:
+          - "amount"
+          - "currency"
+          - "payment_frequency"
+        relationships:
+          - "Premium is associated with Policy"
+
+      - name: "Endorsement"
+        definition: "A contractual change that adds, removes, clarifies, or amends policy terms."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Endorsement modifies Policy"
+          - "Endorsement may be evidenced by Document"
+
+      - name: "Schedule"
+        definition: "A structured statement of policy specific details, insured items, or covered sections forming part of the contract record."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Schedule may form part of Policy"
+          - "Schedule is evidenced by Document"
+
+      - name: "Pension Scheme"
+        definition: "A structured arrangement through which retirement benefits are provided to members under defined rules."
+        applies_to:
+          - pensions
+        relationships:
+          - "Pension Scheme has Pension Member"
+          - "Pension Scheme may be sponsored by Employer"
+          - "Pension Scheme may define Contribution"
+          - "Pension Scheme may define Benefit"
+
+      - name: "Contribution"
+        definition: "A payment made by or on behalf of a pension member into a pension arrangement."
+        applies_to:
+          - pensions
+        core_attributes:
+          - "contribution_amount"
+          - "contribution_frequency"
+          - "contribution_date"
+        relationships:
+          - "Contribution is made into Pension Scheme"
+          - "Contribution may be made by Employer"
+          - "Contribution may be made by Pension Member"
+
+      - name: "Benefit"
+        definition: "A pension entitlement or retirement outcome arising from scheme participation and rules."
+        applies_to:
+          - pensions
+        relationships:
+          - "Benefit is defined by Pension Scheme"
+          - "Benefit may be payable to Beneficiary"
+
+  - name: "Risk"
+    description: "Represents exposure, peril, and characteristics relevant to underwriting or protection."
+    entities:
+      - name: "Risk"
+        definition: "An exposure or subject of uncertainty that may give rise to loss, liability, or the need for protection."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Policy covers Risk"
+          - "Risk may relate to Insured Object"
+          - "Risk may be influenced by Risk Factor"
+
+      - name: "Peril"
+        definition: "A cause or source of loss that may be insured against."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Peril may affect Risk"
+          - "Coverage may apply to Peril"
+
+      - name: "Hazard"
+        definition: "A condition or characteristic that increases the likelihood or severity of loss."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Hazard may influence Risk"
+
+      - name: "Risk Factor"
+        definition: "A measurable or descriptive characteristic used in assessing risk."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Risk Factor may influence Risk"
+
+      - name: "Occupancy"
+        definition: "The pattern or basis on which a property or premises is occupied or used."
+        applies_to:
+          - home
+          - commercial_property
+        relationships:
+          - "Occupancy may apply to Property"
+          - "Occupancy may influence Risk"
+
+      - name: "Business Activity"
+        definition: "The commercial operations or trade carried out by an organisation or at a premises."
+        applies_to:
+          - commercial_property
+        relationships:
+          - "Business Activity may influence Risk"
+          - "Business Activity may occur at Commercial Premises"
+
+  - name: "Asset"
+    description: "Represents the object being insured, covered, or administered."
+    entities:
+      - name: "Insured Object"
+        definition: "A general asset, subject, item, or interest to which coverage applies."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Coverage applies to Insured Object"
+
+      - name: "Vehicle"
+        definition: "A motor vehicle that is insured or assessed for insurance purposes."
+        applies_to:
+          - motor
+        core_attributes:
+          - "registration_number"
+          - "make"
+          - "model"
+          - "year_of_manufacture"
+          - "body_type"
+          - "fuel_type"
+        relationships:
+          - "Vehicle is an Insured Object"
+
+      - name: "Property"
+        definition: "A residential property, building, or contents subject to insurance."
+        applies_to:
+          - home
+        relationships:
+          - "Property is an Insured Object"
+          - "Property is located at Location"
+
+      - name: "Commercial Premises"
+        definition: "A business location, site, or insured commercial property used for business purposes."
+        applies_to:
+          - commercial_property
+        relationships:
+          - "Commercial Premises is an Insured Object"
+          - "Commercial Premises is located at Location"
+          - "Commercial Premises may be associated with Business Activity"
+
+      - name: "Pension Account"
+        definition: "A member level record or accumulation structure representing pension value, contributions, and investment allocation."
+        applies_to:
+          - pensions
+        relationships:
+          - "Pension Account belongs to Pension Member"
+          - "Pension Account may receive Contribution"
+          - "Pension Account may hold Benefit"
+
+  - name: "Claims_and_Events"
+    description: "Represents claims, incidents, losses, and related outcomes."
+    entities:
+      - name: "Claim"
+        definition: "A request or demand for payment, service, or benefit under a contract following a relevant event or entitlement."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Claim may arise from Loss Event"
+          - "Claim may relate to Policy"
+          - "Claim may relate to Coverage"
+
+      - name: "Loss Event"
+        definition: "An incident or occurrence that causes damage, loss, liability, or a recoverable event."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Loss Event may affect Insured Object"
+          - "Claim may arise from Loss Event"
+
+      - name: "Settlement"
+        definition: "The outcome of resolving a claim through payment, repair, replacement, or other agreed method."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        relationships:
+          - "Settlement may resolve Claim"
+
+  - name: "Document"
+    description: "Represents documentary evidence, records, and inputs relevant to insurance and pensions."
+    entities:
+      - name: "Document"
+        definition: "A recorded artefact containing contractual, evidential, explanatory, or operational information."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+          - pensions
+        core_attributes:
+          - "document_id"
+          - "document_type"
+          - "document_title"
+          - "issue_date"
+          - "version_number"
+        relationships:
+          - "Document may evidence Policy"
+          - "Document may evidence Endorsement"
+          - "Document may describe Coverage"
+
+      - name: "Policy Wording"
+        definition: "A document that sets out the standard terms, conditions, exclusions, and coverage wording for a product or contract."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Policy Wording is a Document"
+          - "Policy Wording may describe Coverage"
+          - "Policy Wording may describe Exclusion"
+
+      - name: "Schedule Document"
+        definition: "A document containing policy specific details such as insured objects, sections, sums insured, and dates."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Schedule Document is a Document"
+          - "Schedule Document may evidence Schedule"
+
+      - name: "Endorsement Document"
+        definition: "A document recording a change to policy terms, details, or coverage."
+        applies_to:
+          - motor
+          - home
+          - commercial_property
+        relationships:
+          - "Endorsement Document is a Document"
+          - "Endorsement Document may evidence Endorsement"
