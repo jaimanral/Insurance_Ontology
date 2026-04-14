@@ -1,0 +1,77 @@
+version: "0.1"
+name: "motor_entities"
+description: "Motor insurance module entities for Insurance Ontology Version 1"
+
+module: "motor"
+
+entities:
+  vehicle:
+    definition: "A motor vehicle that is insured or assessed for insurance purposes."
+    extends: "Insured Object"
+    applies_to: ["motor"]
+    core_attributes: ["registration_number", "vehicle_identification_number", "make", "model", "variant", "year_of_manufacture", "body_type", "fuel_type", "transmission_type", "engine_size_cc", "market_value", "purchase_date"]
+    relationships: ["Vehicle is an Insured Object", "Coverage applies to Vehicle", "Vehicle may be operated by Driver", "Vehicle may be kept at Location"]
+
+  driver:
+    definition: "An individual permitted to operate the insured vehicle."
+    extends: "Person"
+    applies_to: ["motor"]
+    core_attributes: ["full_name", "date_of_birth", "licence_type", "licence_issue_date", "occupation", "marital_status", "residency_status", "years_licensed", "claims_history_count", "conviction_count"]
+    relationships: ["Driver is a Person", "Driver may operate Vehicle", "Driver may be Policyholder", "Driver may be Insured"]
+
+  named_driver:
+    definition: "A driver specifically declared on the policy as permitted to operate the insured vehicle."
+    extends: "driver"
+    applies_to: ["motor"]
+    core_attributes: ["relationship_to_policyholder", "is_main_driver"]
+    relationships: ["Named Driver is a Driver", "Named Driver may operate Vehicle"]
+
+  vehicle_usage:
+    definition: "The declared usage basis for the insured vehicle."
+    applies_to: ["motor"]
+    core_attributes: ["usage_type", "annual_mileage", "commuting_flag", "business_use_flag"]
+    relationships: ["Vehicle Usage applies to Vehicle", "Vehicle Usage may influence Risk"]
+
+  no_claims_discount:
+    definition: "A record of claim free driving history used to reduce premium."
+    applies_to: ["motor"]
+    core_attributes: ["years_of_no_claims", "protected_flag", "proof_provided_flag"]
+    relationships: ["No Claims Discount may apply to Policy", "No Claims Discount may relate to Driver"]
+
+  vehicle_modification:
+    definition: "A change from standard manufacturer specification that may affect risk or coverage."
+    applies_to: ["motor"]
+    core_attributes: ["modification_type", "modification_description", "declared_flag"]
+    relationships: ["Vehicle Modification applies to Vehicle", "Vehicle Modification may influence Risk"]
+
+  security_device:
+    definition: "A theft prevention or safety device fitted to the insured vehicle."
+    applies_to: ["motor"]
+    core_attributes: ["device_type", "approved_flag", "installation_date"]
+    relationships: ["Security Device applies to Vehicle", "Security Device may influence Risk"]
+
+  motor_coverage:
+    definition: "A motor specific aspect of protection provided under the policy."
+    extends: "Coverage"
+    applies_to: ["motor"]
+    core_attributes: ["cover_basis", "own_damage_included", "third_party_included", "fire_included", "theft_included", "windscreen_included", "courtesy_car_included", "breakdown_assistance_included", "foreign_use_included"]
+    relationships: ["Motor Coverage is a Coverage", "Motor Coverage applies to Vehicle", "Motor Coverage may have Limit", "Motor Coverage may have Excess"]
+
+  garaging:
+    definition: "The normal location and storage arrangement for the insured vehicle when not in use."
+    applies_to: ["motor"]
+    core_attributes: ["garaging_type", "postcode", "overnight_location_same_as_home_flag"]
+    relationships: ["Garaging applies to Vehicle", "Garaging may influence Risk"]
+
+  motor_policy:
+    definition: "A policy providing protection for motor vehicle related risks."
+    extends: "Policy"
+    applies_to: ["motor"]
+    core_attributes: ["policy_number", "inception_date", "expiry_date", "status", "currency"]
+    relationships: ["Motor Policy is a Policy", "Motor Policy has Policyholder", "Motor Policy may cover Insured", "Motor Policy contains Motor Coverage", "Motor Policy insures Vehicle", "Motor Policy may include Named Driver", "Motor Policy has Premium"]
+
+  accident_history:
+    definition: "A record of previous accidents or losses associated with the driver or insured vehicle."
+    applies_to: ["motor"]
+    core_attributes: ["incident_date", "fault_indicator", "loss_type", "incurred_amount", "claim_count"]
+    relationships: ["Accident History may relate to Driver", "Accident History may relate to Vehicle", "Accident History may influence Risk"]
