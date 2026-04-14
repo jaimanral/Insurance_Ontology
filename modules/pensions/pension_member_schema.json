@@ -1,0 +1,255 @@
+{
+  "title": "UK Pension Member Schema",
+  "type": "object",
+  "required": [
+    "pension_scheme",
+    "pension_member",
+    "pension_account"
+  ],
+  "properties": {
+    "pension_scheme": {
+      "type": "object",
+      "required": [
+        "scheme_identifier",
+        "scheme_name",
+        "scheme_type",
+        "scheme_status",
+        "registration_status",
+        "normal_retirement_age",
+        "auto_enrolment_qualifying_flag"
+      ],
+      "properties": {
+        "scheme_identifier": { "type": "string" },
+        "scheme_name": { "type": "string" },
+        "scheme_type": {
+          "type": "string",
+          "enum": [
+            "defined_contribution",
+            "defined_benefit",
+            "hybrid",
+            "workplace_pension",
+            "personal_pension",
+            "group_personal_pension",
+            "self_invested_personal_pension",
+            "master_trust",
+            "other"
+          ]
+        },
+        "scheme_status": {
+          "type": "string",
+          "enum": ["draft", "active", "closed_to_new_members", "closed_to_future_accrual", "winding_up", "transferred", "terminated"]
+        },
+        "registration_status": {
+          "type": "string",
+          "enum": ["registered", "unregistered", "pending", "unknown"]
+        },
+        "normal_retirement_age": { "type": "integer" },
+        "auto_enrolment_qualifying_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "employer": {
+      "type": "object",
+      "properties": {
+        "employer_name": { "type": "string" },
+        "employer_identifier": { "type": "string" },
+        "payroll_reference": { "type": "string" },
+        "auto_enrolment_duties_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "scheme_administrator": {
+      "type": "object",
+      "properties": {
+        "administrator_name": { "type": "string" },
+        "administrator_type": {
+          "type": "string",
+          "enum": ["insurer", "third_party_administrator", "trustee", "employer", "platform_provider", "other"]
+        },
+        "contact_reference": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "pension_member": {
+      "type": "object",
+      "required": [
+        "member_identifier",
+        "full_name",
+        "date_of_birth",
+        "date_joined",
+        "employment_status",
+        "retirement_age",
+        "national_insurance_number_present_flag"
+      ],
+      "properties": {
+        "member_identifier": { "type": "string" },
+        "full_name": { "type": "string" },
+        "date_of_birth": { "type": "string", "format": "date" },
+        "date_joined": { "type": "string", "format": "date" },
+        "employment_status": {
+          "type": "string",
+          "enum": ["active_employee", "deferred_member", "pensioner_member", "former_employee", "contractor", "other"]
+        },
+        "retirement_age": { "type": "integer" },
+        "national_insurance_number_present_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "pension_account": {
+      "type": "object",
+      "required": [
+        "account_identifier",
+        "account_status",
+        "current_fund_value",
+        "vested_value",
+        "transfer_value",
+        "crystallised_flag"
+      ],
+      "properties": {
+        "account_identifier": { "type": "string" },
+        "account_status": {
+          "type": "string",
+          "enum": ["active", "deferred", "in_payment", "transferred_out", "closed", "other"]
+        },
+        "current_fund_value": { "type": "number" },
+        "vested_value": { "type": "number" },
+        "transfer_value": { "type": "number" },
+        "crystallised_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "contributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "contribution_amount",
+          "contribution_frequency",
+          "contribution_date",
+          "contribution_source"
+        ],
+        "properties": {
+          "contribution_amount": { "type": "number" },
+          "contribution_frequency": {
+            "type": "string",
+            "enum": ["weekly", "fortnightly", "monthly", "quarterly", "annual", "ad_hoc"]
+          },
+          "contribution_date": { "type": "string", "format": "date" },
+          "contribution_source": {
+            "type": "string",
+            "enum": ["employee", "employer", "third_party", "transfer_in", "voluntary", "other"]
+          },
+          "employee_contribution_rate": { "type": "number" },
+          "employer_contribution_rate": { "type": "number" },
+          "tax_relief_basis": {
+            "type": "string",
+            "enum": ["relief_at_source", "net_pay_arrangement", "salary_sacrifice", "other"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "fund_allocation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fund_name": { "type": "string" },
+          "fund_type": {
+            "type": "string",
+            "enum": ["equity", "bond", "mixed_asset", "cash", "target_date", "lifestyle", "default_fund", "shariah_compliant", "other"]
+          },
+          "allocation_percentage": { "type": "number" },
+          "default_fund_flag": { "type": "boolean" },
+          "lifestyle_strategy_flag": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "pension_benefit": {
+      "type": "object",
+      "properties": {
+        "benefit_type": {
+          "type": "string",
+          "enum": ["retirement_income", "lump_sum", "drawdown", "annuity", "death_benefit", "survivor_benefit", "ill_health_benefit", "other"]
+        },
+        "benefit_status": {
+          "type": "string",
+          "enum": ["projected", "deferred", "in_payment", "ceased", "settled", "other"]
+        },
+        "benefit_start_date": { "type": "string", "format": "date" },
+        "projected_value": { "type": "number" },
+        "guaranteed_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "beneficiary_nomination": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nomination_date": { "type": "string", "format": "date" },
+          "percentage_allocation": { "type": "number" },
+          "expression_of_wish_flag": { "type": "boolean" },
+          "beneficiary_name": { "type": "string" },
+          "beneficiary_relationship": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "transfers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "transfer_type": {
+            "type": "string",
+            "enum": ["transfer_in", "transfer_out", "internal_transfer", "bulk_transfer", "other"]
+          },
+          "transfer_amount": { "type": "number" },
+          "transfer_date": { "type": "string", "format": "date" },
+          "ceding_scheme_name": { "type": "string" },
+          "receiving_scheme_name": { "type": "string" },
+          "transfer_status": {
+            "type": "string",
+            "enum": ["requested", "in_progress", "completed", "cancelled", "rejected", "other"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "retirement_event": {
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": ["retirement", "crystallisation", "drawdown_commencement", "annuity_purchase", "death_notification", "benefit_payment_start", "other"]
+        },
+        "event_date": { "type": "string", "format": "date" },
+        "retirement_age": { "type": "integer" },
+        "tax_free_cash_taken_flag": { "type": "boolean" },
+        "drawdown_selected_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["document_id", "document_type", "document_title"],
+        "properties": {
+          "document_id": { "type": "string" },
+          "document_type": {
+            "type": "string",
+            "enum": ["scheme_booklet", "annual_benefit_statement", "member_statement", "contribution_statement", "transfer_statement", "benefit_notice", "expression_of_wish_form", "retirement_pack", "other"]
+          },
+          "document_title": { "type": "string" },
+          "issue_date": { "type": "string", "format": "date" },
+          "version_number": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
