@@ -1,0 +1,144 @@
+{
+  "policy": {
+    "policy_number": "HOM00054321",
+    "product_type": "home",
+    "inception_date": "2026-02-01",
+    "expiry_date": "2027-01-31",
+    "status": "active",
+    "currency": "GBP"
+  },
+  "policyholder": {
+    "party_type": "person",
+    "full_name": "Sarah Johnson",
+    "date_of_birth": "1985-09-18",
+    "postcode": "OX16 5TR"
+  },
+  "insured": {
+    "party_type": "person",
+    "full_name": "Sarah Johnson"
+  },
+  "property": {
+    "property_identifier": "PROP10001",
+    "address_line_1": "24 Meadow Close",
+    "address_line_2": "",
+    "city": "Banbury",
+    "postcode": "OX16 5TR",
+    "country_code": "GB",
+    "property_type": "semi_detached_house",
+    "construction_type": "standard",
+    "year_built": 2008,
+    "number_of_bedrooms": 3,
+    "number_of_storeys": 2,
+    "listed_building_flag": false,
+    "rebuild_cost": 285000,
+    "market_value": 410000
+  },
+  "building": {
+    "rebuild_cost": 285000,
+    "wall_material": "brick",
+    "roof_material": "tile",
+    "subsidence_history_flag": false,
+    "flood_history_flag": false
+  },
+  "contents": {
+    "contents_sum_insured": 65000,
+    "high_value_items_flag": true,
+    "business_equipment_flag": true
+  },
+  "occupancy": {
+    "occupancy_type": "owner_occupied",
+    "resident_count": 4,
+    "unoccupied_days": 0,
+    "tenant_flag": false,
+    "owner_occupied_flag": true,
+    "holiday_home_flag": false,
+    "business_use_flag": true
+  },
+  "security_protection": {
+    "alarm_flag": true,
+    "alarm_type": "smart_alarm",
+    "locks_type": "multi_point_lock",
+    "cctv_flag": false,
+    "safe_flag": true
+  },
+  "property_construction": {
+    "construction_type": "standard",
+    "wall_material": "brick",
+    "roof_material": "tile",
+    "non_standard_construction_flag": false
+  },
+  "specified_items": [
+    {
+      "item_description": "Diamond engagement ring",
+      "item_category": "jewellery",
+      "declared_value": 6500,
+      "serial_number": "",
+      "cover_location_type": "inside_and_outside_home"
+    },
+    {
+      "item_description": "Road bicycle",
+      "item_category": "bicycle",
+      "declared_value": 2400,
+      "serial_number": "RB2026X778",
+      "cover_location_type": "inside_and_outside_home"
+    }
+  ],
+  "personal_possessions": [
+    {
+      "item_description": "Laptop",
+      "item_category": "laptop",
+      "declared_value": 1400,
+      "single_article_limit_exceeded_flag": false,
+      "outside_home_cover_flag": true
+    }
+  ],
+  "coverage": {
+    "buildings_included": true,
+    "contents_included": true,
+    "accidental_damage_included": true,
+    "subsidence_included": true,
+    "escape_of_water_included": true,
+    "theft_included": true,
+    "fire_included": true,
+    "storm_included": true,
+    "flood_included": false,
+    "personal_possessions_included": true,
+    "home_emergency_included": true,
+    "legal_expenses_included": false
+  },
+  "premium": {
+    "amount": 524.25,
+    "currency": "GBP",
+    "payment_frequency": "annual"
+  },
+  "excess": {
+    "buildings_excess_amount": 150,
+    "contents_excess_amount": 150,
+    "subsidence_excess_amount": 1000
+  },
+  "claims_history": [
+    {
+      "incident_date": "2022-11-14",
+      "loss_type": "escape_of_water",
+      "claim_amount": 3200,
+      "claim_count": 1,
+      "property_related_flag": true
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "DOC2001",
+      "document_type": "schedule",
+      "document_title": "Home Policy Schedule",
+      "issue_date": "2026-02-01",
+      "version_number": "1.0"
+    },
+    {
+      "document_id": "DOC2002",
+      "document_type": "policy_wording",
+      "document_title": "Home Insurance Policy Wording",
+      "issue_date": "2026-02-01",
+      "version_number": "1.0"
+    }
+  ]
+}
