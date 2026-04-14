@@ -1,0 +1,285 @@
+{
+  "title": "Commercial Property Policy Schema",
+  "type": "object",
+  "required": [
+    "policy",
+    "policyholder",
+    "commercial_premises",
+    "coverage",
+    "premium"
+  ],
+  "properties": {
+    "policy": {
+      "type": "object",
+      "required": [
+        "policy_number",
+        "product_type",
+        "inception_date",
+        "expiry_date",
+        "status",
+        "currency"
+      ],
+      "properties": {
+        "policy_number": { "type": "string" },
+        "product_type": { "type": "string", "const": "commercial_property" },
+        "inception_date": { "type": "string", "format": "date" },
+        "expiry_date": { "type": "string", "format": "date" },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "quoted", "active", "lapsed", "cancelled", "expired", "void"]
+        },
+        "currency": {
+          "type": "string",
+          "enum": ["GBP", "EUR", "USD"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "policyholder": { "$ref": "#/$defs/organisation_party" },
+    "insured": { "$ref": "#/$defs/organisation_party" },
+    "commercial_premises": {
+      "type": "object",
+      "required": [
+        "premises_identifier",
+        "premises_name",
+        "address_line_1",
+        "city",
+        "postcode",
+        "country_code",
+        "premises_type",
+        "construction_type",
+        "ownership_basis"
+      ],
+      "properties": {
+        "premises_identifier": { "type": "string" },
+        "premises_name": { "type": "string" },
+        "address_line_1": { "type": "string" },
+        "address_line_2": { "type": "string" },
+        "city": { "type": "string" },
+        "postcode": { "type": "string" },
+        "country_code": { "type": "string" },
+        "premises_type": {
+          "type": "string",
+          "enum": ["office", "retail_shop", "warehouse", "factory", "mixed_use", "restaurant", "hotel", "industrial_unit", "other"]
+        },
+        "construction_type": {
+          "type": "string",
+          "enum": ["standard", "non_standard", "steel_frame", "concrete", "brick", "stone", "timber_frame", "other"]
+        },
+        "year_built": { "type": "integer" },
+        "number_of_storeys": { "type": "integer" },
+        "floor_area": { "type": "number" },
+        "ownership_basis": {
+          "type": "string",
+          "enum": ["freehold_owner", "leasehold_tenant", "landlord", "tenant", "shared_occupancy", "other"]
+        },
+        "occupied_flag": { "type": "boolean" },
+        "vacancy_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "building": {
+      "type": "object",
+      "properties": {
+        "buildings_sum_insured": { "type": "number" },
+        "wall_material": { "type": "string" },
+        "roof_material": { "type": "string" },
+        "listed_building_flag": { "type": "boolean" },
+        "rebuild_cost": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "stock": {
+      "type": "object",
+      "properties": {
+        "stock_type": {
+          "type": "string",
+          "enum": ["raw_materials", "finished_goods", "seasonal_stock", "perishable_goods", "electronics", "general_merchandise", "other"]
+        },
+        "stock_sum_insured": { "type": "number" },
+        "average_stock_value": { "type": "number" },
+        "seasonal_increase_flag": { "type": "boolean" },
+        "seasonal_increase_percentage": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "plant_and_machinery": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "equipment_description": { "type": "string" },
+          "equipment_category": {
+            "type": "string",
+            "enum": ["manufacturing_equipment", "office_equipment", "it_equipment", "specialist_machinery", "portable_equipment", "fixed_installation", "other"]
+          },
+          "declared_value": { "type": "number" },
+          "critical_to_operations_flag": { "type": "boolean" },
+          "inspection_required_flag": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "business_activity": {
+      "type": "object",
+      "properties": {
+        "business_description": { "type": "string" },
+        "business_activity_type": {
+          "type": "string",
+          "enum": ["office_based", "retail", "manufacturing", "storage", "hospitality", "professional_services", "distribution", "mixed_trade", "other"]
+        },
+        "annual_turnover": { "type": "number" },
+        "employee_count": { "type": "integer" },
+        "hazardous_process_flag": { "type": "boolean" },
+        "customer_facing_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "business_interruption": {
+      "type": "object",
+      "properties": {
+        "business_interruption_sum_insured": { "type": "number" },
+        "indemnity_period_months": {
+          "type": "string",
+          "enum": ["12", "18", "24", "30", "36", "other"]
+        },
+        "gross_profit_basis_flag": { "type": "boolean" },
+        "revenue_basis_flag": { "type": "boolean" },
+        "increased_cost_of_working_included": { "type": "boolean" },
+        "denial_of_access_included": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "protection_measure": {
+      "type": "object",
+      "properties": {
+        "protection_type": {
+          "type": "string",
+          "enum": ["alarm", "cctv", "sprinkler", "shutters", "security_guard", "access_control", "fire_detection", "other"]
+        },
+        "alarm_flag": { "type": "boolean" },
+        "cctv_flag": { "type": "boolean" },
+        "sprinkler_flag": { "type": "boolean" },
+        "shutters_flag": { "type": "boolean" },
+        "security_guard_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "tenancy_interest": {
+      "type": "object",
+      "properties": {
+        "ownership_basis": {
+          "type": "string",
+          "enum": ["freehold_owner", "leasehold_tenant", "landlord", "tenant", "shared_occupancy", "other"]
+        },
+        "landlord_interest_flag": { "type": "boolean" },
+        "tenant_improvements_flag": { "type": "boolean" },
+        "lease_term_months": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "buildings_included": { "type": "boolean" },
+        "contents_included": { "type": "boolean" },
+        "stock_included": { "type": "boolean" },
+        "plant_and_machinery_included": { "type": "boolean" },
+        "business_interruption_included": { "type": "boolean" },
+        "theft_included": { "type": "boolean" },
+        "fire_included": { "type": "boolean" },
+        "storm_included": { "type": "boolean" },
+        "flood_included": { "type": "boolean" },
+        "malicious_damage_included": { "type": "boolean" },
+        "subsidence_included": { "type": "boolean" },
+        "terrorism_included": { "type": "boolean" },
+        "property_owners_liability_included": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "premium": {
+      "type": "object",
+      "required": ["amount", "currency", "payment_frequency"],
+      "properties": {
+        "amount": { "type": "number" },
+        "currency": { "type": "string", "enum": ["GBP", "EUR", "USD"] },
+        "payment_frequency": {
+          "type": "string",
+          "enum": ["single", "weekly", "monthly", "quarterly", "half_yearly", "annual"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "excess": {
+      "type": "object",
+      "properties": {
+        "standard_property_excess_amount": { "type": "number" },
+        "escape_of_water_excess_amount": { "type": "number" },
+        "flood_excess_amount": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "claims_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "incident_date": { "type": "string", "format": "date" },
+          "loss_type": {
+            "type": "string",
+            "enum": ["fire", "flood", "storm", "theft", "malicious_damage", "escape_of_water", "subsidence", "business_interruption", "other"]
+          },
+          "claim_amount": { "type": "number" },
+          "claim_count": { "type": "integer" },
+          "premises_related_flag": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/document" }
+    }
+  },
+  "$defs": {
+    "organisation_party": {
+      "type": "object",
+      "required": ["party_type"],
+      "properties": {
+        "party_type": { "type": "string", "enum": ["organisation"] },
+        "organisation_name": { "type": "string" },
+        "registered_country_code": { "type": "string" },
+        "primary_business_activity": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "document": {
+      "type": "object",
+      "required": ["document_id", "document_type", "document_title"],
+      "properties": {
+        "document_id": { "type": "string" },
+        "document_type": {
+          "type": "string",
+          "enum": [
+            "policy_wording",
+            "schedule",
+            "endorsement",
+            "proposal_form",
+            "certificate",
+            "claim_form",
+            "supporting_evidence",
+            "statement",
+            "scheme_document",
+            "member_statement",
+            "scheme_booklet"
+          ]
+        },
+        "document_title": { "type": "string" },
+        "issue_date": { "type": "string", "format": "date" },
+        "version_number": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
