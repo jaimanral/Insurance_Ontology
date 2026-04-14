@@ -1,0 +1,42 @@
+version: "0.1"
+name: "commercial_property_vocabularies"
+description: "Commercial Property controlled vocabularies for Insurance Ontology Version 1"
+
+module: "commercial_property"
+
+vocabularies:
+  premises_type:
+    description: "Type of insured commercial premises."
+    values: ["office", "retail_shop", "warehouse", "factory", "mixed_use", "restaurant", "hotel", "industrial_unit", "other"]
+
+  construction_type:
+    description: "General construction classification of the commercial premises."
+    values: ["standard", "non_standard", "steel_frame", "concrete", "brick", "stone", "timber_frame", "other"]
+
+  ownership_basis:
+    description: "Legal or contractual basis on which the premises is occupied or owned."
+    values: ["freehold_owner", "leasehold_tenant", "landlord", "tenant", "shared_occupancy", "other"]
+
+  business_activity_type:
+    description: "Primary type of commercial activity undertaken by the insured."
+    values: ["office_based", "retail", "manufacturing", "storage", "hospitality", "professional_services", "distribution", "mixed_trade", "other"]
+
+  stock_type:
+    description: "Category of stock or inventory held at the premises."
+    values: ["raw_materials", "finished_goods", "seasonal_stock", "perishable_goods", "electronics", "general_merchandise", "other"]
+
+  equipment_category:
+    description: "Category of plant or machinery used in business operations."
+    values: ["manufacturing_equipment", "office_equipment", "it_equipment", "specialist_machinery", "portable_equipment", "fixed_installation", "other"]
+
+  protection_type:
+    description: "Type of protection measure present at the premises."
+    values: ["alarm", "cctv", "sprinkler", "shutters", "security_guard", "access_control", "fire_detection", "other"]
+
+  loss_type:
+    description: "Type of commercial property related loss event or prior claim."
+    values: ["fire", "flood", "storm", "theft", "malicious_damage", "escape_of_water", "subsidence", "business_interruption", "other"]
+
+  indemnity_period_months:
+    description: "Length of business interruption indemnity period in months."
+    values: ["12", "18", "24", "30", "36", "other"]
