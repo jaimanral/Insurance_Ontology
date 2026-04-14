@@ -1,0 +1,124 @@
+{
+  "pension_scheme": {
+    "scheme_identifier": "UKPEN00125",
+    "scheme_name": "Greenfield Workplace Pension Plan",
+    "scheme_type": "defined_contribution",
+    "scheme_status": "active",
+    "registration_status": "registered",
+    "normal_retirement_age": 67,
+    "auto_enrolment_qualifying_flag": true
+  },
+  "employer": {
+    "employer_name": "Greenfield Retail Limited",
+    "employer_identifier": "GBEMP77881",
+    "payroll_reference": "PAYE123456",
+    "auto_enrolment_duties_flag": true
+  },
+  "scheme_administrator": {
+    "administrator_name": "Greenfield Pension Services",
+    "administrator_type": "third_party_administrator",
+    "contact_reference": "GPS ADMIN DESK"
+  },
+  "pension_member": {
+    "member_identifier": "MEM000987",
+    "full_name": "Emma Taylor",
+    "date_of_birth": "1989-06-21",
+    "date_joined": "2021-04-01",
+    "employment_status": "active_employee",
+    "retirement_age": 67,
+    "national_insurance_number_present_flag": true
+  },
+  "pension_account": {
+    "account_identifier": "ACC009871",
+    "account_status": "active",
+    "current_fund_value": 48650.42,
+    "vested_value": 48650.42,
+    "transfer_value": 48650.42,
+    "crystallised_flag": false
+  },
+  "contributions": [
+    {
+      "contribution_amount": 325.00,
+      "contribution_frequency": "monthly",
+      "contribution_date": "2026-03-31",
+      "contribution_source": "employee",
+      "employee_contribution_rate": 5,
+      "employer_contribution_rate": 3,
+      "tax_relief_basis": "relief_at_source"
+    },
+    {
+      "contribution_amount": 195.00,
+      "contribution_frequency": "monthly",
+      "contribution_date": "2026-03-31",
+      "contribution_source": "employer",
+      "employee_contribution_rate": 5,
+      "employer_contribution_rate": 3,
+      "tax_relief_basis": "relief_at_source"
+    }
+  ],
+  "fund_allocation": [
+    {
+      "fund_name": "Balanced Growth Fund",
+      "fund_type": "mixed_asset",
+      "allocation_percentage": 70,
+      "default_fund_flag": true,
+      "lifestyle_strategy_flag": true
+    },
+    {
+      "fund_name": "Global Equity Fund",
+      "fund_type": "equity",
+      "allocation_percentage": 30,
+      "default_fund_flag": false,
+      "lifestyle_strategy_flag": false
+    }
+  ],
+  "pension_benefit": {
+    "benefit_type": "retirement_income",
+    "benefit_status": "projected",
+    "benefit_start_date": "",
+    "projected_value": 3620.00,
+    "guaranteed_flag": false
+  },
+  "beneficiary_nomination": [
+    {
+      "nomination_date": "2024-05-10",
+      "percentage_allocation": 100,
+      "expression_of_wish_flag": true,
+      "beneficiary_name": "Daniel Taylor",
+      "beneficiary_relationship": "spouse"
+    }
+  ],
+  "transfers": [
+    {
+      "transfer_type": "transfer_in",
+      "transfer_amount": 12500.00,
+      "transfer_date": "2022-08-15",
+      "ceding_scheme_name": "Legacy Personal Pension Plan",
+      "receiving_scheme_name": "Greenfield Workplace Pension Plan",
+      "transfer_status": "completed"
+    }
+  ],
+  "retirement_event": {
+    "event_type": "retirement",
+    "event_date": "",
+    "retirement_age": 67,
+    "tax_free_cash_taken_flag": false,
+    "drawdown_selected_flag": false
+  },
+  "documents": [
+    {
+      "document_id": "DOC4001",
+      "document_type": "member_statement",
+      "document_title": "Annual Pension Member Statement",
+      "issue_date": "2026-04-05",
+      "version_number": "1.0"
+    },
+    {
+      "document_id": "DOC4002",
+      "document_type": "scheme_booklet",
+      "document_title": "Workplace Pension Scheme Booklet",
+      "issue_date": "2026-01-01",
+      "version_number": "2.1"
+    }
+  ]
+}
