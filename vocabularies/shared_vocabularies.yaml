@@ -1,0 +1,78 @@
+version: "0.1"
+name: "shared_vocabularies"
+description: "Shared controlled vocabularies for the Insurance Ontology Version 1"
+
+vocabularies:
+  - name: "party_type"
+    description: "Classification of party participating in the insurance or pensions context."
+    values:
+      - "person"
+      - "organisation"
+
+  - name: "policy_status"
+    description: "Lifecycle status of an insurance policy."
+    values:
+      - "draft"
+      - "quoted"
+      - "active"
+      - "lapsed"
+      - "cancelled"
+      - "expired"
+      - "void"
+
+  - name: "document_type"
+    description: "Type of document used in the insurance or pensions context."
+    values:
+      - "policy_wording"
+      - "schedule"
+      - "endorsement"
+      - "proposal_form"
+      - "certificate"
+      - "claim_form"
+      - "supporting_evidence"
+      - "statement"
+      - "scheme_document"
+
+  - name: "payment_frequency"
+    description: "Frequency at which a payment or contribution is made."
+    values:
+      - "single"
+      - "weekly"
+      - "monthly"
+      - "quarterly"
+      - "half_yearly"
+      - "annual"
+
+  - name: "claim_status"
+    description: "Status of a claim or claim related case."
+    values:
+      - "notified"
+      - "in_review"
+      - "accepted"
+      - "declined"
+      - "settled"
+      - "closed"
+
+  - name: "currency_code"
+    description: "Currency used for monetary values."
+    values:
+      - "GBP"
+      - "EUR"
+      - "USD"
+
+  - name: "coverage_status"
+    description: "Status of a coverage section or component."
+    values:
+      - "included"
+      - "excluded"
+      - "optional"
+      - "conditional"
+
+  - name: "contribution_frequency"
+    description: "Frequency of pension contribution."
+    values:
+      - "weekly"
+      - "monthly"
+      - "quarterly"
+      - "annual"
+      - "ad_hoc"
