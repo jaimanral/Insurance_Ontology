@@ -1,0 +1,50 @@
+version: "0.1"
+name: "motor_vocabularies"
+description: "Motor insurance controlled vocabularies for Insurance Ontology Version 1"
+
+module: "motor"
+
+vocabularies:
+  cover_basis:
+    description: "Basis of motor insurance protection."
+    values: ["third_party_only", "third_party_fire_and_theft", "comprehensive"]
+
+  vehicle_use_type:
+    description: "Declared use of the insured vehicle."
+    values: ["social_domestic_pleasure", "commuting", "business_use_class_1", "business_use_class_2", "business_use_class_3", "commercial_use"]
+
+  fuel_type:
+    description: "Fuel or power source of the vehicle."
+    values: ["petrol", "diesel", "hybrid", "electric", "plug_in_hybrid", "other"]
+
+  transmission_type:
+    description: "Transmission type of the vehicle."
+    values: ["manual", "automatic", "semi_automatic", "other"]
+
+  vehicle_body_type:
+    description: "Body style classification of the vehicle."
+    values: ["hatchback", "saloon", "estate", "suv", "coupe", "convertible", "van", "pickup", "other"]
+
+  licence_type:
+    description: "Type of driving licence held by the driver."
+    values: ["provisional", "full_uk", "full_eu", "full_non_eu", "international", "other"]
+
+  garaging_type:
+    description: "Where the vehicle is normally kept overnight."
+    values: ["roadside", "driveway", "private_garage", "car_park", "gated_compound", "other"]
+
+  modification_type:
+    description: "Category of vehicle modification."
+    values: ["performance", "cosmetic", "accessibility", "security", "bodywork", "audio", "wheels", "other"]
+
+  security_device_type:
+    description: "Type of security or theft prevention device fitted to the vehicle."
+    values: ["alarm", "immobiliser", "tracker", "dashcam", "steering_lock", "other"]
+
+  marital_status:
+    description: "Marital status of the driver or policyholder where relevant to rating."
+    values: ["single", "married", "civil_partner", "divorced", "widowed", "other"]
+
+  loss_type:
+    description: "Type of prior accident or loss."
+    values: ["own_damage", "third_party_damage", "theft", "fire", "windscreen", "personal_injury", "other"]
