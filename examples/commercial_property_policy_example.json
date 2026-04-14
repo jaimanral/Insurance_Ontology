@@ -1,0 +1,147 @@
+{
+  "policy": {
+    "policy_number": "CPP00077881",
+    "product_type": "commercial_property",
+    "inception_date": "2026-03-01",
+    "expiry_date": "2027-02-28",
+    "status": "active",
+    "currency": "GBP"
+  },
+  "policyholder": {
+    "party_type": "organisation",
+    "organisation_name": "Greenfield Retail Limited",
+    "registered_country_code": "GB",
+    "primary_business_activity": "retail"
+  },
+  "insured": {
+    "party_type": "organisation",
+    "organisation_name": "Greenfield Retail Limited"
+  },
+  "commercial_premises": {
+    "premises_identifier": "CPREM1001",
+    "premises_name": "Greenfield High Street Store",
+    "address_line_1": "18 Market Road",
+    "address_line_2": "",
+    "city": "Reading",
+    "postcode": "RG1 4AB",
+    "country_code": "GB",
+    "premises_type": "retail_shop",
+    "construction_type": "standard",
+    "year_built": 1998,
+    "number_of_storeys": 2,
+    "floor_area": 420,
+    "ownership_basis": "leasehold_tenant",
+    "occupied_flag": true,
+    "vacancy_flag": false
+  },
+  "building": {
+    "buildings_sum_insured": 650000,
+    "wall_material": "brick",
+    "roof_material": "tile",
+    "listed_building_flag": false,
+    "rebuild_cost": 610000
+  },
+  "stock": {
+    "stock_type": "general_merchandise",
+    "stock_sum_insured": 175000,
+    "average_stock_value": 120000,
+    "seasonal_increase_flag": true,
+    "seasonal_increase_percentage": 25
+  },
+  "plant_and_machinery": [
+    {
+      "equipment_description": "Point of sale systems",
+      "equipment_category": "it_equipment",
+      "declared_value": 18000,
+      "critical_to_operations_flag": true,
+      "inspection_required_flag": false
+    },
+    {
+      "equipment_description": "Security shutter system",
+      "equipment_category": "fixed_installation",
+      "declared_value": 9500,
+      "critical_to_operations_flag": true,
+      "inspection_required_flag": false
+    }
+  ],
+  "business_activity": {
+    "business_description": "Retail sale of household goods and seasonal merchandise",
+    "business_activity_type": "retail",
+    "annual_turnover": 1450000,
+    "employee_count": 14,
+    "hazardous_process_flag": false,
+    "customer_facing_flag": true
+  },
+  "business_interruption": {
+    "business_interruption_sum_insured": 500000,
+    "indemnity_period_months": "12",
+    "gross_profit_basis_flag": true,
+    "revenue_basis_flag": false,
+    "increased_cost_of_working_included": true,
+    "denial_of_access_included": true
+  },
+  "protection_measure": {
+    "protection_type": "alarm",
+    "alarm_flag": true,
+    "cctv_flag": true,
+    "sprinkler_flag": false,
+    "shutters_flag": true,
+    "security_guard_flag": false
+  },
+  "tenancy_interest": {
+    "ownership_basis": "leasehold_tenant",
+    "landlord_interest_flag": false,
+    "tenant_improvements_flag": true,
+    "lease_term_months": 60
+  },
+  "coverage": {
+    "buildings_included": true,
+    "contents_included": true,
+    "stock_included": true,
+    "plant_and_machinery_included": true,
+    "business_interruption_included": true,
+    "theft_included": true,
+    "fire_included": true,
+    "storm_included": true,
+    "flood_included": true,
+    "malicious_damage_included": true,
+    "subsidence_included": false,
+    "terrorism_included": false,
+    "property_owners_liability_included": false
+  },
+  "premium": {
+    "amount": 4825.75,
+    "currency": "GBP",
+    "payment_frequency": "annual"
+  },
+  "excess": {
+    "standard_property_excess_amount": 500,
+    "escape_of_water_excess_amount": 1000,
+    "flood_excess_amount": 2500
+  },
+  "claims_history": [
+    {
+      "incident_date": "2023-09-18",
+      "loss_type": "theft",
+      "claim_amount": 6200,
+      "claim_count": 1,
+      "premises_related_flag": true
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "DOC3001",
+      "document_type": "schedule",
+      "document_title": "Commercial Property Policy Schedule",
+      "issue_date": "2026-03-01",
+      "version_number": "1.0"
+    },
+    {
+      "document_id": "DOC3002",
+      "document_type": "policy_wording",
+      "document_title": "Commercial Property Insurance Policy Wording",
+      "issue_date": "2026-03-01",
+      "version_number": "1.0"
+    }
+  ]
+}
