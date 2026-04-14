@@ -1,1 +1,71 @@
+version: "0.1"
+name: "pensions_vocabularies"
+description: "UK pensions controlled vocabularies for Insurance Ontology Version 1"
 
+module: "pensions"
+jurisdiction: "UK"
+
+vocabularies:
+  scheme_type:
+    description: "Type of UK pension scheme or arrangement."
+    values: ["defined_contribution", "defined_benefit", "hybrid", "workplace_pension", "personal_pension", "group_personal_pension", "self_invested_personal_pension", "master_trust", "other"]
+
+  scheme_status:
+    description: "Operational status of the pension scheme."
+    values: ["draft", "active", "closed_to_new_members", "closed_to_future_accrual", "winding_up", "transferred", "terminated"]
+
+  registration_status:
+    description: "Registration status of the pension scheme in the relevant UK context."
+    values: ["registered", "unregistered", "pending", "unknown"]
+
+  employment_status:
+    description: "Employment basis of the pension member."
+    values: ["active_employee", "deferred_member", "pensioner_member", "former_employee", "contractor", "other"]
+
+  account_status:
+    description: "Status of the member pension account."
+    values: ["active", "deferred", "in_payment", "transferred_out", "closed", "other"]
+
+  contribution_source:
+    description: "Source of pension contribution."
+    values: ["employee", "employer", "third_party", "transfer_in", "voluntary", "other"]
+
+  contribution_frequency:
+    description: "Frequency of pension contribution."
+    values: ["weekly", "fortnightly", "monthly", "quarterly", "annual", "ad_hoc"]
+
+  tax_relief_basis:
+    description: "Basis on which UK pension tax relief is applied."
+    values: ["relief_at_source", "net_pay_arrangement", "salary_sacrifice", "other"]
+
+  fund_type:
+    description: "Type of pension investment fund."
+    values: ["equity", "bond", "mixed_asset", "cash", "target_date", "lifestyle", "default_fund", "shariah_compliant", "other"]
+
+  benefit_type:
+    description: "Type of UK pension benefit."
+    values: ["retirement_income", "lump_sum", "drawdown", "annuity", "death_benefit", "survivor_benefit", "ill_health_benefit", "other"]
+
+  benefit_status:
+    description: "Status of pension benefit."
+    values: ["projected", "deferred", "in_payment", "ceased", "settled", "other"]
+
+  transfer_type:
+    description: "Direction or basis of pension transfer."
+    values: ["transfer_in", "transfer_out", "internal_transfer", "bulk_transfer", "other"]
+
+  transfer_status:
+    description: "Status of pension transfer."
+    values: ["requested", "in_progress", "completed", "cancelled", "rejected", "other"]
+
+  administrator_type:
+    description: "Type of party acting as scheme administrator."
+    values: ["insurer", "third_party_administrator", "trustee", "employer", "platform_provider", "other"]
+
+  event_type:
+    description: "Type of retirement or pension lifecycle event."
+    values: ["retirement", "crystallisation", "drawdown_commencement", "annuity_purchase", "death_notification", "benefit_payment_start", "other"]
+
+  pensions_document_type:
+    description: "Type of pensions related document."
+    values: ["scheme_booklet", "annual_benefit_statement", "member_statement", "contribution_statement", "transfer_statement", "benefit_notice", "expression_of_wish_form", "retirement_pack", "other"]
