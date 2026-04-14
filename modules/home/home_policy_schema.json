@@ -1,0 +1,304 @@
+{
+  "title": "Home Policy Schema",
+  "type": "object",
+  "required": [
+    "policy",
+    "policyholder",
+    "property",
+    "coverage",
+    "premium"
+  ],
+  "properties": {
+    "policy": {
+      "type": "object",
+      "required": [
+        "policy_number",
+        "product_type",
+        "inception_date",
+        "expiry_date",
+        "status",
+        "currency"
+      ],
+      "properties": {
+        "policy_number": { "type": "string" },
+        "product_type": { "type": "string", "const": "home" },
+        "inception_date": { "type": "string", "format": "date" },
+        "expiry_date": { "type": "string", "format": "date" },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "quoted", "active", "lapsed", "cancelled", "expired", "void"]
+        },
+        "currency": {
+          "type": "string",
+          "enum": ["GBP", "EUR", "USD"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "policyholder": { "$ref": "#/$defs/person_party" },
+    "insured": { "$ref": "#/$defs/person_party" },
+    "property": {
+      "type": "object",
+      "required": [
+        "property_identifier",
+        "address_line_1",
+        "city",
+        "postcode",
+        "country_code",
+        "property_type",
+        "construction_type"
+      ],
+      "properties": {
+        "property_identifier": { "type": "string" },
+        "address_line_1": { "type": "string" },
+        "address_line_2": { "type": "string" },
+        "city": { "type": "string" },
+        "postcode": { "type": "string" },
+        "country_code": { "type": "string" },
+        "property_type": {
+          "type": "string",
+          "enum": [
+            "detached_house",
+            "semi_detached_house",
+            "terraced_house",
+            "bungalow",
+            "flat",
+            "maisonette",
+            "converted_flat",
+            "cottage",
+            "other"
+          ]
+        },
+        "construction_type": {
+          "type": "string",
+          "enum": ["standard", "non_standard", "timber_frame", "stone", "brick", "concrete", "listed", "thatched", "other"]
+        },
+        "year_built": { "type": "integer" },
+        "number_of_bedrooms": { "type": "integer" },
+        "number_of_storeys": { "type": "integer" },
+        "listed_building_flag": { "type": "boolean" },
+        "rebuild_cost": { "type": "number" },
+        "market_value": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "building": {
+      "type": "object",
+      "properties": {
+        "rebuild_cost": { "type": "number" },
+        "wall_material": {
+          "type": "string",
+          "enum": ["brick", "stone", "concrete", "timber", "mixed", "other"]
+        },
+        "roof_material": {
+          "type": "string",
+          "enum": ["tile", "slate", "thatch", "metal", "flat_felt", "flat_membrane", "other"]
+        },
+        "subsidence_history_flag": { "type": "boolean" },
+        "flood_history_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "contents": {
+      "type": "object",
+      "properties": {
+        "contents_sum_insured": { "type": "number" },
+        "high_value_items_flag": { "type": "boolean" },
+        "business_equipment_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "occupancy": {
+      "type": "object",
+      "properties": {
+        "occupancy_type": {
+          "type": "string",
+          "enum": ["owner_occupied", "tenanted", "holiday_home", "unoccupied", "family_occupied", "other"]
+        },
+        "resident_count": { "type": "integer" },
+        "unoccupied_days": { "type": "integer" },
+        "tenant_flag": { "type": "boolean" },
+        "owner_occupied_flag": { "type": "boolean" },
+        "holiday_home_flag": { "type": "boolean" },
+        "business_use_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "security_protection": {
+      "type": "object",
+      "properties": {
+        "alarm_flag": { "type": "boolean" },
+        "alarm_type": {
+          "type": "string",
+          "enum": ["bells_only", "monitored_alarm", "smart_alarm", "police_linked_alarm", "none", "other"]
+        },
+        "locks_type": {
+          "type": "string",
+          "enum": ["mortice_deadlock", "multi_point_lock", "key_operated_window_lock", "standard_lock", "other"]
+        },
+        "cctv_flag": { "type": "boolean" },
+        "safe_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "property_construction": {
+      "type": "object",
+      "properties": {
+        "construction_type": {
+          "type": "string",
+          "enum": ["standard", "non_standard", "timber_frame", "stone", "brick", "concrete", "listed", "thatched", "other"]
+        },
+        "wall_material": {
+          "type": "string",
+          "enum": ["brick", "stone", "concrete", "timber", "mixed", "other"]
+        },
+        "roof_material": {
+          "type": "string",
+          "enum": ["tile", "slate", "thatch", "metal", "flat_felt", "flat_membrane", "other"]
+        },
+        "non_standard_construction_flag": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "specified_items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/insured_item" }
+    },
+    "personal_possessions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item_description": { "type": "string" },
+          "item_category": {
+            "type": "string",
+            "enum": ["jewellery", "watch", "artwork", "electronics", "laptop", "mobile_phone", "bicycle", "musical_instrument", "camera", "other"]
+          },
+          "declared_value": { "type": "number" },
+          "single_article_limit_exceeded_flag": { "type": "boolean" },
+          "outside_home_cover_flag": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "buildings_included": { "type": "boolean" },
+        "contents_included": { "type": "boolean" },
+        "accidental_damage_included": { "type": "boolean" },
+        "subsidence_included": { "type": "boolean" },
+        "escape_of_water_included": { "type": "boolean" },
+        "theft_included": { "type": "boolean" },
+        "fire_included": { "type": "boolean" },
+        "storm_included": { "type": "boolean" },
+        "flood_included": { "type": "boolean" },
+        "personal_possessions_included": { "type": "boolean" },
+        "home_emergency_included": { "type": "boolean" },
+        "legal_expenses_included": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "premium": {
+      "type": "object",
+      "required": ["amount", "currency", "payment_frequency"],
+      "properties": {
+        "amount": { "type": "number" },
+        "currency": { "type": "string", "enum": ["GBP", "EUR", "USD"] },
+        "payment_frequency": {
+          "type": "string",
+          "enum": ["single", "weekly", "monthly", "quarterly", "half_yearly", "annual"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "excess": {
+      "type": "object",
+      "properties": {
+        "buildings_excess_amount": { "type": "number" },
+        "contents_excess_amount": { "type": "number" },
+        "subsidence_excess_amount": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "claims_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "incident_date": { "type": "string", "format": "date" },
+          "loss_type": {
+            "type": "string",
+            "enum": ["fire", "flood", "storm", "theft", "escape_of_water", "accidental_damage", "subsidence", "malicious_damage", "other"]
+          },
+          "claim_amount": { "type": "number" },
+          "claim_count": { "type": "integer" },
+          "property_related_flag": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/document" }
+    }
+  },
+  "$defs": {
+    "person_party": {
+      "type": "object",
+      "required": ["party_type", "full_name"],
+      "properties": {
+        "party_type": { "type": "string", "enum": ["person"] },
+        "full_name": { "type": "string" },
+        "date_of_birth": { "type": "string", "format": "date" },
+        "postcode": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "insured_item": {
+      "type": "object",
+      "properties": {
+        "item_description": { "type": "string" },
+        "item_category": {
+          "type": "string",
+          "enum": ["jewellery", "watch", "artwork", "electronics", "laptop", "mobile_phone", "bicycle", "musical_instrument", "camera", "other"]
+        },
+        "declared_value": { "type": "number" },
+        "serial_number": { "type": "string" },
+        "cover_location_type": {
+          "type": "string",
+          "enum": ["inside_home_only", "inside_and_outside_home", "specified_location", "worldwide", "other"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "document": {
+      "type": "object",
+      "required": ["document_id", "document_type", "document_title"],
+      "properties": {
+        "document_id": { "type": "string" },
+        "document_type": {
+          "type": "string",
+          "enum": [
+            "policy_wording",
+            "schedule",
+            "endorsement",
+            "proposal_form",
+            "certificate",
+            "claim_form",
+            "supporting_evidence",
+            "statement",
+            "scheme_document",
+            "member_statement",
+            "scheme_booklet"
+          ]
+        },
+        "document_title": { "type": "string" },
+        "issue_date": { "type": "string", "format": "date" },
+        "version_number": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
