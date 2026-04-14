@@ -1,0 +1,76 @@
+version: "0.1"
+name: "commercial_property_entities"
+description: "Commercial Property insurance module entities for Insurance Ontology Version 1"
+
+module: "commercial_property"
+
+entities:
+  commercial_property_policy:
+    definition: "A policy providing protection for insured commercial premises, property assets, and related business interruption risks."
+    extends: "Policy"
+    applies_to: ["commercial_property"]
+    core_attributes: ["policy_number", "inception_date", "expiry_date", "status", "currency"]
+    relationships: ["Commercial Property Policy is a Policy", "Commercial Property Policy has Policyholder", "Commercial Property Policy may cover Insured", "Commercial Property Policy contains Commercial Property Coverage", "Commercial Property Policy insures Commercial Premises", "Commercial Property Policy has Premium"]
+
+  commercial_premises:
+    definition: "A business location, site, or insured commercial property used for business purposes."
+    extends: "Insured Object"
+    applies_to: ["commercial_property"]
+    core_attributes: ["premises_identifier", "premises_name", "address_line_1", "address_line_2", "city", "postcode", "country_code", "premises_type", "construction_type", "year_built", "number_of_storeys", "floor_area", "ownership_basis", "occupied_flag", "vacancy_flag"]
+    relationships: ["Commercial Premises is an Insured Object", "Commercial Premises is located at Location", "Commercial Property Coverage applies to Commercial Premises", "Commercial Premises may be associated with Business Activity", "Commercial Premises may contain Stock", "Commercial Premises may contain Plant and Machinery"]
+
+  building:
+    definition: "The physical structure of the insured commercial premises."
+    applies_to: ["commercial_property"]
+    core_attributes: ["buildings_sum_insured", "wall_material", "roof_material", "listed_building_flag", "rebuild_cost"]
+    relationships: ["Building may form part of Commercial Premises", "Building may be covered by Commercial Property Coverage"]
+
+  stock:
+    definition: "Goods, inventory, or materials held for sale, processing, storage, or business use."
+    applies_to: ["commercial_property"]
+    core_attributes: ["stock_type", "stock_sum_insured", "average_stock_value", "seasonal_increase_flag", "seasonal_increase_percentage"]
+    relationships: ["Stock may be located in Commercial Premises", "Stock may be covered by Commercial Property Coverage"]
+
+  plant_and_machinery:
+    definition: "Business equipment, machinery, or fixed assets used in commercial operations."
+    applies_to: ["commercial_property"]
+    core_attributes: ["equipment_description", "equipment_category", "declared_value", "critical_to_operations_flag", "inspection_required_flag"]
+    relationships: ["Plant and Machinery may be located in Commercial Premises", "Plant and Machinery may be covered by Commercial Property Coverage"]
+
+  business_activity:
+    definition: "The commercial operations, trade, or business carried out by the insured organisation or at the insured premises."
+    extends: "Business Activity"
+    applies_to: ["commercial_property"]
+    core_attributes: ["business_description", "business_activity_type", "annual_turnover", "employee_count", "hazardous_process_flag", "customer_facing_flag"]
+    relationships: ["Business Activity may occur at Commercial Premises", "Business Activity may influence Risk", "Business Activity may influence Business Interruption exposure"]
+
+  business_interruption:
+    definition: "Cover relating to loss of income, increased cost of working, or interruption to business operations following insured damage."
+    applies_to: ["commercial_property"]
+    core_attributes: ["business_interruption_sum_insured", "indemnity_period_months", "gross_profit_basis_flag", "revenue_basis_flag", "increased_cost_of_working_included", "denial_of_access_included"]
+    relationships: ["Business Interruption may form part of Commercial Property Coverage", "Business Interruption may relate to Business Activity", "Business Interruption may relate to Commercial Premises"]
+
+  commercial_property_coverage:
+    definition: "A commercial property specific aspect of protection provided under the policy."
+    extends: "Coverage"
+    applies_to: ["commercial_property"]
+    core_attributes: ["buildings_included", "contents_included", "stock_included", "plant_and_machinery_included", "business_interruption_included", "theft_included", "fire_included", "storm_included", "flood_included", "malicious_damage_included", "subsidence_included", "terrorism_included", "property_owners_liability_included"]
+    relationships: ["Commercial Property Coverage is a Coverage", "Commercial Property Coverage applies to Commercial Premises", "Commercial Property Coverage may apply to Stock", "Commercial Property Coverage may apply to Plant and Machinery", "Commercial Property Coverage may include Business Interruption", "Commercial Property Coverage may have Limit", "Commercial Property Coverage may have Excess", "Commercial Property Coverage may be restricted by Exclusion"]
+
+  protection_measure:
+    definition: "A physical or procedural measure in place to reduce the risk of loss or damage at the commercial premises."
+    applies_to: ["commercial_property"]
+    core_attributes: ["protection_type", "alarm_flag", "cctv_flag", "sprinkler_flag", "shutters_flag", "security_guard_flag"]
+    relationships: ["Protection Measure applies to Commercial Premises", "Protection Measure may influence Risk"]
+
+  tenancy_interest:
+    definition: "The legal or contractual basis on which the insured party occupies or owns the commercial premises."
+    applies_to: ["commercial_property"]
+    core_attributes: ["ownership_basis", "landlord_interest_flag", "tenant_improvements_flag", "lease_term_months"]
+    relationships: ["Tenancy Interest may apply to Commercial Premises", "Tenancy Interest may influence Coverage"]
+
+  claims_history:
+    definition: "A record of previous losses or claims associated with the business, premises, or insured property."
+    applies_to: ["commercial_property"]
+    core_attributes: ["incident_date", "loss_type", "claim_amount", "claim_count", "premises_related_flag"]
+    relationships: ["Claims History may relate to Commercial Premises", "Claims History may relate to Policyholder", "Claims History may influence Risk"]
