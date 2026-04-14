@@ -1,0 +1,76 @@
+version: "0.1"
+name: "home_entities"
+description: "Home insurance module entities for Insurance Ontology Version 1"
+
+module: "home"
+
+entities:
+  home_policy:
+    definition: "A policy providing protection for residential property, buildings, contents, or related home risks."
+    extends: "Policy"
+    applies_to: ["home"]
+    core_attributes: ["policy_number", "inception_date", "expiry_date", "status", "currency"]
+    relationships: ["Home Policy is a Policy", "Home Policy has Policyholder", "Home Policy may cover Insured", "Home Policy contains Home Coverage", "Home Policy insures Property", "Home Policy has Premium"]
+
+  property:
+    definition: "A residential property, building, or contents subject to insurance."
+    extends: "Insured Object"
+    applies_to: ["home"]
+    core_attributes: ["property_identifier", "address_line_1", "address_line_2", "city", "postcode", "country_code", "property_type", "construction_type", "year_built", "number_of_bedrooms", "number_of_storeys", "listed_building_flag", "rebuild_cost", "market_value"]
+    relationships: ["Property is an Insured Object", "Property is located at Location", "Home Coverage applies to Property", "Property may have Occupancy", "Property may contain Specified Item"]
+
+  building:
+    definition: "The physical structure of the insured residential premises."
+    extends: "property"
+    applies_to: ["home"]
+    core_attributes: ["rebuild_cost", "wall_material", "roof_material", "subsidence_history_flag", "flood_history_flag"]
+    relationships: ["Building is part of Property", "Building may be covered by Home Coverage"]
+
+  contents:
+    definition: "Household items and personal belongings kept within the insured property."
+    applies_to: ["home"]
+    core_attributes: ["contents_sum_insured", "high_value_items_flag", "business_equipment_flag"]
+    relationships: ["Contents may be located in Property", "Contents may be covered by Home Coverage"]
+
+  occupancy:
+    definition: "The pattern or basis on which the insured property is occupied or used."
+    applies_to: ["home"]
+    core_attributes: ["occupancy_type", "resident_count", "unoccupied_days", "tenant_flag", "owner_occupied_flag", "holiday_home_flag", "business_use_flag"]
+    relationships: ["Occupancy applies to Property", "Occupancy may influence Risk"]
+
+  home_coverage:
+    definition: "A home specific aspect of protection provided under the policy."
+    extends: "Coverage"
+    applies_to: ["home"]
+    core_attributes: ["buildings_included", "contents_included", "accidental_damage_included", "subsidence_included", "escape_of_water_included", "theft_included", "fire_included", "storm_included", "flood_included", "personal_possessions_included", "home_emergency_included", "legal_expenses_included"]
+    relationships: ["Home Coverage is a Coverage", "Home Coverage applies to Property", "Home Coverage may apply to Building", "Home Coverage may apply to Contents", "Home Coverage may have Limit", "Home Coverage may have Excess", "Home Coverage may be restricted by Exclusion"]
+
+  specified_item:
+    definition: "An individual item explicitly declared for cover, usually due to value or special cover requirements."
+    applies_to: ["home"]
+    core_attributes: ["item_description", "item_category", "declared_value", "serial_number", "cover_location_type"]
+    relationships: ["Specified Item may form part of Contents", "Specified Item may be covered by Home Coverage"]
+
+  security_protection:
+    definition: "A physical or procedural measure intended to reduce theft or damage risk at the property."
+    applies_to: ["home"]
+    core_attributes: ["alarm_flag", "alarm_type", "locks_type", "cctv_flag", "safe_flag"]
+    relationships: ["Security Protection applies to Property", "Security Protection may influence Risk"]
+
+  property_construction:
+    definition: "The structural form and materials of the insured property."
+    applies_to: ["home"]
+    core_attributes: ["construction_type", "wall_material", "roof_material", "non_standard_construction_flag"]
+    relationships: ["Property Construction applies to Property", "Property Construction may influence Risk"]
+
+  personal_possession:
+    definition: "A portable personal belonging that may be insured inside or outside the home."
+    applies_to: ["home"]
+    core_attributes: ["item_description", "item_category", "declared_value", "single_article_limit_exceeded_flag", "outside_home_cover_flag"]
+    relationships: ["Personal Possession may be covered by Home Coverage", "Personal Possession may be associated with Policyholder"]
+
+  claims_history:
+    definition: "A record of previous losses or claims associated with the home, insured, or property."
+    applies_to: ["home"]
+    core_attributes: ["incident_date", "loss_type", "claim_amount", "claim_count", "property_related_flag"]
+    relationships: ["Claims History may relate to Property", "Claims History may relate to Policyholder", "Claims History may influence Risk"]
